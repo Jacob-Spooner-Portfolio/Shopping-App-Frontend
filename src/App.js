@@ -22,7 +22,7 @@ function App() {
       //checks https status
       if(response.status === 200) {
         console.log(response.data) //checks if api is accessed
-        setProducts(response.data)
+        setProducts(response.data) //sets product data on success
         setLoading(false)
       } else {
         console.log(response.status)
@@ -37,7 +37,7 @@ function App() {
   return (
     <div className="App">
       {loading ? (
-        <h4>Loading...</h4>
+        <h4>Loading...</h4> //Waits for API Response
       ) : (
         <Routes>
           <Route path="/" element={<Layout/>}>
