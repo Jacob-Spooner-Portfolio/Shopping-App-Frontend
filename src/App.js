@@ -14,6 +14,8 @@ function App() {
     try {
 
       const response = await api.get("/api/v1/products")
+      
+      console.log(response.data) //checks if api is accessed
 
       setProducts(response.data)
 
