@@ -7,11 +7,14 @@ import { Routes, Route } from 'react-router-dom';
 
 function App() {
 
+  //Set conditional to force API Load
   const [loading, setLoading] = useState(false);
+
   const [productList, setProducts] = useState([]);
 
   const getProducts = async () =>{
 
+    //Await loading API
     setLoading(true);
 
     await api.get("/api/v1/products")
