@@ -1,9 +1,9 @@
-import React from 'react'
+import Featured_Products from '../featured_products/Featured_Products'
 
-const Welcome = () => {
+const Home = ({products}) => {
   return (
-    <div>Welcome</div>
+    <Featured_Products products = {products} />
   )
 }
 
-export default Welcome
+export default Home
