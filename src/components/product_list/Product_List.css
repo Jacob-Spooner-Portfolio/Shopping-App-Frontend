@@ -1,5 +1,34 @@
 .product-card-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    grid-template-columns: repeat(5,1fr);
     gap: 20px;
+}
+
+/* Adjust for smaller screen sizes if needed */
+@media screen and (max-width: 1200px) {
+    .product-grid {
+        grid-template-columns: repeat(4, 1fr);
+        /* Change to 4 columns */
+    }
+}
+
+@media screen and (max-width: 900px) {
+    .product-grid {
+        grid-template-columns: repeat(3, 1fr);
+        /* Change to 3 columns */
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .product-grid {
+        grid-template-columns: repeat(2, 1fr);
+        /* Change to 2 columns */
+    }
+}
+
+@media screen and (max-width: 400px) {
+    .product-grid {
+        grid-template-columns: repeat(1, 1fr);
+        /* Change to 1 column */
+    }
 }
