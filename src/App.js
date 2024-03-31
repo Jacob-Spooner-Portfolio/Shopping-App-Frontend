@@ -10,7 +10,7 @@ function App() {
   //Set conditional to force API Load
   const [loading, setLoading] = useState(false);
 
-  const [productList, setProducts] = useState([]);
+  const [allProducts, setProducts] = useState([]);
 
   const getProducts = async () =>{
 
@@ -37,11 +37,11 @@ function App() {
   return (
     <div className="App">
       {loading ? (
-        <h4>Loading...</h4> //Waits for API Response
+        <h1>Loading...</h1> //Waits for API Response
       ) : (
         <Routes>
           <Route path="/" element={<Layout/>}>
-            <Route path="/" element={<Home products={productList} />}>
+            <Route path="/" element={<Home products={allProducts} />}>
 
             </Route>
           </Route>
