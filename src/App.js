@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import Layout from './components/Layout'
 import Home from "./components/home/Home"
 import { Routes, Route } from 'react-router-dom';
+import Product_Page from './components/product_page/Product_Page';
 
 function App() {
 
@@ -41,8 +42,8 @@ function App() {
         <Routes>
           <Route path="/" element={<Layout/>}>
             <Route path="/" element={<Home products={allProducts} />}>
-
             </Route>
+            <Route path="/products/:sku" element={<Product_Page/>} />
           </Route>
         </Routes>
       )}
