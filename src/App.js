@@ -7,19 +7,27 @@ import { Routes, Route } from 'react-router-dom';
 
 function App() {
 
-  const [products, setProducts] = useState();
+  //Set conditional to force API Load
+  const [loading, setLoading] = useState(false);
+
+  const [productList, setProducts] = useState([]);
 
   const getProducts = async () =>{
 
-    try {
+    //Await loading API
+    setLoading(true);
 
-      const response = await api.get("/api/v1/products")
-      
-      console.log(response.data) //checks if api is accessed
-
-      setProducts(response.data)
-
-    } catch (err) {console.log(err)}
+    await api.get("/api/v1/products")
+    .then(response =>{
+      //checks https status
+      if(response.status === 200) {
+        console.log(response.data) //checks if api is accessed
+        setProducts(response.data) //sets product data on success
+        setLoading(false)
+      } else {
+        console.log(response.status)
+      }
+    })
   }
 
   useEffect(() => {
@@ -28,13 +36,17 @@ function App() {
 
   return (
     <div className="App">
-      <Routes>
-        <Route path="/" element={<Layout/>}>
-          <Route path="/" element={<Home/>}>
+      {loading ? (
+        <h4>Loading...</h4> //Waits for API Response
+      ) : (
+        <Routes>
+          <Route path="/" element={<Layout/>}>
+            <Route path="/" element={<Home products={productList} />}>
 
+            </Route>
           </Route>
-        </Route>
-      </Routes>
+        </Routes>
+      )}
     </div>
   );
 }

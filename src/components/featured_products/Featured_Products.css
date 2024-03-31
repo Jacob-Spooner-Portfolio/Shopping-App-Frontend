@@ -1,0 +1,43 @@
+.product-card-carousel{
+    width: 100vw;
+    background-color: black;
+    margin: auto;
+}
+
+.product-image{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+
+.product-image > img{
+    height: 20%;
+    width: 20%;
+    margin-left: auto;
+    margin-right: auto;
+    align-self: center;
+    background-color: grey;
+    background-image: linear-gradient();
+}
+
+.product-card-container{
+    height: 550px;
+    background-color: white;
+    margin: auto;
+}
+
+.product-card{
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 100%;
+    background-color: grey;
+}
+
+.product-name{
+    font-family:'Times New Roman', Times, serif;
+    font-size: medium;
+    position: relative;
+    margin:auto;
+    text-align: center;
+}

@@ -20,10 +20,11 @@
     "react-player": "^2.15.1",
     "react-router-dom": "^6.22.3",
     "react-scripts": "5.0.1",
+    "underscore": "^1.13.6",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "WATCHPACK_POLLING=true react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
