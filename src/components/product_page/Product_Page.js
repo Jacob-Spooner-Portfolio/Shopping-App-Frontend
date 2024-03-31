@@ -2,14 +2,13 @@ import { useEffect, useState } from "react"
 import React from 'react'
 import { useParams } from "react-router-dom"
 import api from '../../api/axios-config'
+import ProductImageCarousel from "./product_images/Product_Images"
 
 //Dynamic Product page
 const Product_Page = () => {
 
     //Get SKU from url
     const {sku} = useParams();
-    console.log('SKU:', sku); // Log the SKU parameter
-
   
     //Setup product state
     const [product, setProduct] = useState(null);
@@ -34,11 +33,15 @@ const Product_Page = () => {
     }
 
     return (
-        <div classname="product-page-container">
-            <h2>Product Details</h2>
-            <p>SKU: {product.sku}</p>
-            <p>Title: {product.title}</p>
-            {/* Render other product details here */}
+        <div className="product-page-container">
+            <div className="product-carousel-container">
+            <ProductImageCarousel images={product.images} />
+            </div>
+            <div className='product-info'>
+                <h3>{product.title}</h3>
+                <p>${parseFloat(product.price)}</p>
+                <op>{product.availability}</op>
+            </div>
         </div>
     )
 }

@@ -1,0 +1,17 @@
+/* ProductPage.css */
+.product-carousel-container {
+    text-align: center;
+    /* Center the carousel */
+    margin-bottom: 20px;
+    /* Add some space between the carousel and the text */
+}
+
+.product-info {
+    text-align: center;
+    color: black;
+    /* Align the text to the center */
+} 
+
+.product-page-container{
+    background-color: black;
+}

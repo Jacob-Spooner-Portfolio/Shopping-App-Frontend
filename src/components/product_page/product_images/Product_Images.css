@@ -1,0 +1,13 @@
+.product-image-carousel {
+    margin: 20px auto;
+    max-width: 800px;
+    /* Adjust the maximum width as needed */
+}
+
+.product-image-carousel .slick-slide img {
+    width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+    /* Center the images horizontally */
+}
