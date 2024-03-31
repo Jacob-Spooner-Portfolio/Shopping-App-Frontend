@@ -1,6 +1,6 @@
 import './Product_Card.css'
 
-const Product_Card = ({products}) => {
+const Product_Card = ({product}) => {
   return (
     <div className='product-card'>
         <div className='product-image'>
@@ -11,10 +11,10 @@ const Product_Card = ({products}) => {
         </div>
         <div className='product-info-container'>
             <div className='product-price'>
-                <h7>{product.price}</h7>
+                <h7>${parseFloat(product.price)}</h7>
             </div>
             <div className='product-quantity'>
-                <h7>{product.availability}</h7>
+                <output>{product.availability}</output>
             </div>
         </div>
     </div>
