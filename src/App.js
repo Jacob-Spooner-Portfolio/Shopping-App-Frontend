@@ -4,13 +4,14 @@ import { useState, useEffect } from 'react';
 import Layout from './components/Layout'
 import Home from "./components/home/Home"
 import { Routes, Route } from 'react-router-dom';
+import Product_Page from './components/product_page/Product_Page';
 
 function App() {
 
   //Set conditional to force API Load
   const [loading, setLoading] = useState(false);
 
-  const [productList, setProducts] = useState([]);
+  const [allProducts, setProducts] = useState([]);
 
   const getProducts = async () =>{
 
@@ -21,7 +22,6 @@ function App() {
     .then(response =>{
       //checks https status
       if(response.status === 200) {
-        console.log(response.data) //checks if api is accessed
         setProducts(response.data) //sets product data on success
         setLoading(false)
       } else {
@@ -37,14 +37,14 @@ function App() {
   return (
     <div className="App">
       {loading ? (
-        <h4>Loading...</h4> //Waits for API Response
+        <h1>Loading...</h1> //Waits for API Response
       ) : (
         <Routes>
           <Route path="/" element={<Layout/>}>
-            <Route path="/" element={<Home products={productList} />}>
-
+            <Route path="/" element={<Home products={allProducts} />}>
             </Route>
           </Route>
+          <Route path="/products/:sku" element={<Product_Page/>} />
         </Routes>
       )}
     </div>
