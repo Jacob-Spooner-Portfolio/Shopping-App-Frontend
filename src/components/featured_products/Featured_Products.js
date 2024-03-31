@@ -1,13 +1,15 @@
 import './Featured_Products.css'
 import Carousel from 'react-material-ui-carousel'
 import { Paper } from '@mui/material'
+import * as _ from 'underscore'
 
 const Featured_Products = ({products}) => {
-  return (
+    let samples = _.sample(products, 10);
+    return (
     <div className='product-card-carousel'>
         <Carousel>
             {
-                products.map((product) =>{
+                samples.map((product) =>{
                     return(
                         <Paper>
                             <div className = 'product-card-container'>
