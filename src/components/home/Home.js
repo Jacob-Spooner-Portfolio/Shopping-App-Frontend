@@ -5,7 +5,7 @@ const Home = ({products}) => {
   return (
     <div>
       <div><Featured_Products products = {products} /></div>
-      <div><Product_List products = {products} /></div>
+      <div><Product_List initialProducts = {products} /></div>
     </div>
   )
 }

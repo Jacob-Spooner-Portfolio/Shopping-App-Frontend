@@ -1,65 +1,67 @@
 import './Product_List.css'
 import '.././product_card/Product_Card'
-import React from 'react'
+import React, {useState, useEffect} from 'react'
 import Product_Card from '.././product_card/Product_Card'
 
-let minIndex = 0;
-let maxIndex = 10;
-let pageNum = 1;
-let productsOnPage = 10;
+const Product_List = ({initialProducts}) => {
 
-function updateResultLimit(limit) {productsOnPage = limit;}
+    console.log(initialProducts)
 
-function updateOnPageShift(shift) 
-{
-    //short-circuit
-    if(pageNum === 1) {return}
-    
-    //handle decrement
-    if(shift === -1) {minIndex -= productsOnPage; pageNum--;}
+    //Set initial states for all dynamic variables
+    const [products, setProducts] = useState(initialProducts);
+    const [filteredProducts, setFilteredProducts] = useState(initialProducts ? initialProducts.slice(0,10) : []) //default to 10 results
+    const [resultLimit, setResultLimit] = useState(10);
+    const [pageNum, setPageNum] = useState(1);
 
-    //Handle increment
-    else {minIndex += productsOnPage; pageNum++;}
-}
+    //Update results based on page number && result limit
+    //re-render based on changing results or pageNum
+    useEffect(() => {
+        if (initialProducts) {
+            setProducts(initialProducts);
+            const startIndex = (pageNum - 1) * resultLimit;
+            const endIndex = startIndex + resultLimit;
+            setFilteredProducts(products.slice(startIndex, endIndex));
+        }
+    }, [resultLimit, pageNum, products, initialProducts])
 
-const Product_List = ({products}) => {
+    //Update the result limits based on button press
+    const updateResultLimit = (newLimit) => {
+        setResultLimit(newLimit);
+        setPageNum(1); //Reset to first page when limit changes to avoid result issues
+    };
 
-    //CURRENT SLICE LOGIC TO LIMIT RESULTS
-    // if(((pageNum*productsOnPage)+minIndex) >= products.length) {maxIndex = products.length}
-    // else {maxIndex = ((pageNum*productsOnPage)+minIndex)}
+    //increment page on button press
+    const nextPage = () => {
+        setPageNum(pageNum+1);
+    };
 
-    // let listOfProducts = products.slice(minIndex, maxIndex);
+    //decrement page on button press
+    const prevPage = () => {
+        setPageNum(pageNum-1)
+    };
 
-    // console.log(listOfProducts)
-
-    //display all products at the moment. Working to get dynamic results TODO
-    let listOfProducts = products
-    return(
-        <div className='product-list-container'>
-            {
-                listOfProducts.map((product) =>{
-                    return(
-                        <div className='product-card'>
-                        <Product_Card product = {product} />
-                        </div>
-                    )
-                })
-            }
-            {/* make a reset function when changing values */}
-            <div className='products-per-page-list'>
-                <input onClick={updateResultLimit(10)} type='button' id='products-10' value="10"/>
-                <input onClick={updateResultLimit(25)} type='button' id='products-25' value="25"/>
-                <input onClick={updateResultLimit(50)} type='button' id='products-50' value="50"/>
+    return (
+        <div className='product-card-container'>
+            {/* Create grid of products */}
+            <div className='product-card-grid'>
+                {
+                    filteredProducts.map(product => (
+                        <Product_Card product={product} />
+                    ))
+                }
             </div>
-            {/* Make a function that updates all math */}
-            <div className='page-container'> 
-                <input onClick={updateOnPageShift(-1)} type='button' id='prev-page' value="prev"/>
-                <p className='page-number'>{pageNum}</p>
-                <input onClick={updateOnPageShift(1)} type='button' id='next-page' value="next"/>
-            </div>
+            {/* Create select for each result limiter */}
+            <select value={resultLimit} onChange={(e) => updateResultLimit(parseInt(e.target.value))}>
+                <option value={10}>10</option>
+                <option value={25}>25</option>
+                <option value={50}>50</option>
+            </select>
+            {/* Create page selector */}
+            <button onClick={prevPage} disabled={pageNum === 1}>Previous</button>
+            <span>{pageNum}</span>
+            <button onClick={nextPage} disabled={filteredProducts.length < resultLimit}>Next</button>
         </div>
     )
-    
 }
       
 export default Product_List
