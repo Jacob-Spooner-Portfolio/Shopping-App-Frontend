@@ -18,10 +18,8 @@ const Product_Page = () => {
     useEffect(() => {
         const fetchProduct = async () => {
             try {
-                console.log('Fetching product with SKU:', sku);
                 const response = await api.get(`/api/v1/products/${sku}`);
                 const data = response.data;
-                console.log('Product data:', data);
                 setProduct(data);
             } catch (error) {
                 console.error('Error fetching product:', error);
@@ -32,11 +30,11 @@ const Product_Page = () => {
     }, [sku]);
 
     if(!product) {
-        return <div>Loading...</div>
+        return <div>Loading Product...</div>
     }
 
     return (
-        <div>
+        <div classname="product-page-container">
             <h2>Product Details</h2>
             <p>SKU: {product.sku}</p>
             <p>Title: {product.title}</p>
