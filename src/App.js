@@ -21,7 +21,6 @@ function App() {
     .then(response =>{
       //checks https status
       if(response.status === 200) {
-        console.log(response.data) //checks if api is accessed
         setProducts(response.data) //sets product data on success
         setLoading(false)
       } else {
